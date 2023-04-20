@@ -136,6 +136,26 @@ vote-deploy-68bcfcf748-xlsfn   1/1     Running   0              9m10s
 vote-deploy-68bcfcf748-zrv8l   1/1     Running   0              8m59s
 
 
+########################## secret #######################""
+ #openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
+#kubectl create secret tls domain-pki --cert cert.pem --key key.pem
+secret/domain-pki created
+#kubectl get secret domain-pki -o yaml
+apiVersion: v1
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FUR
+kind: Secret
+metadata:
+  creationTimestamp: "2023-04-20T10:13:24Z"
+  name: domain-pki
+  namespace: default
+  resourceVersion: "74329"
+  uid: 0e41a2fa-c797-40f2-b66b-66e17cd09d4e
+type: kubernetes.io/tls
+# kubectl get pod
+NAME                           READY   STATUS      RESTARTS         AGE
+proxy                          1/1     Running     0                104m
+
 
 
 
