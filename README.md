@@ -48,7 +48,7 @@ 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 ####key#####
 # kubectl get pods
 NAME    READY   STATUS    RESTARTS   AGE
 nginx   1/1     Running   0          2m6s
-#kubectl exec nginx -- nginx -v ### pour executer le pod/conteneur
+#kubectl exec nginx -- nginx -v ### pour executer le pod/conteneur la version
 nginx version: nginx/1.12.2
 #kubectl exec -it nginx -- /bin/bash ### pour lancer le pod/conteneur en bash
 #kubectl exec -it debug -- /bin/sh  ### pour lancer le pod/conteneur en sh
@@ -156,6 +156,49 @@ type: kubernetes.io/tls
 NAME                           READY   STATUS      RESTARTS         AGE
 proxy                          1/1     Running     0                104m
 
+################### configmap #############################"
+#kubectl create configmap nginx-config --from-file=./nginx.conf
+configmap/nginx-config created
+#kubectl create -f pod-config-volume.yaml 
+pod/www created
+
+# kubectl exec -ti www --container proxy -- bash
+root@www:/# cat /etc/nginx/nginx.conf 
+user www-data;
+worker_processes 4;
+pid /run/nginx.pid;
+events {
+ worker_connections 768;
+}
+http {
+ server {
+   listen *:8000;
+   location / {
+     proxy_pass http://localhost;
+   }
+ }
+}
+#kubectl exec -ti www --container proxy -- bash
+root@www:/#curl localhost:8000
+{"message":"www suggests to visit Hadvuhoga"}
+
+############configmap avec variable d'environnement ######################
+#kubectl create configmap app-config-env --from-file=./app.env
+configmap/app-config-env created
+#kubectl get cm app-config-env -o yaml
+apiVersion: v1
+data:
+  app.env: |
+    log_level= WARN
+    env= production
+    cache=redis
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-04-20T13:20:34Z"
+  name: app-config-env
+  namespace: default
+  resourceVersion: "83412"
+  uid: 8cc62ed2-f2e7-483a-b4f0-13fbb6ee23e4
 
 
 
