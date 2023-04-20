@@ -71,6 +71,34 @@ PING 10.244.0.5 (10.244.0.5): 56 data bytes
 NAME    READY   STATUS    RESTARTS      AGE
 wp      2/2     Running   1 (10s ago)   73s
 #kubectl port-forward wp 8080:80 #lancer wordpress avec la commande forward
+
+################### wordpress ##################"
+#kubectl get pod
+NAME    READY   STATUS    RESTARTS      AGE
+wp      2/2     Running   1 (10s ago)   73s
+#kubectl port-forward wp 8080:80 #lancer wordpress avec la commande forward
+
+######################## clusterIP ##################################
+#kubectl get svc
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes              ClusterIP   10.96.0.1        <none>        443/TCP        6h23m
+vote-service            ClusterIP   10.110.197.135   <none>        80/TCP         35m
+
+#kubectl exec -it debug sh
+#curl http://vote-service
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cats vs Dogs!</ti
+     
+ ######################### Nodeport #########################
+ kubectl get svc
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+vote-service-nodeport   NodePort    10.100.14.29     <none>        80:31000/TCP   15m
+
+pour accerder à l'application 
+http://192.168.59.100:31000/
 ######################## deployment ########################
 #kubectl get deployments
 NAME          READY   UP-TO-DATE   AVAILABLE   AGE
