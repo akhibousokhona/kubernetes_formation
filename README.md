@@ -550,5 +550,14 @@ my-gitlab-webservice                         8      9m12s
 my-gitlab-webservice-tests                   1      9m12s
 my-gitlab-workhorse-default                  3      9m12s
 
+### installation gitlab avec helm #####################"
+#helm install my-gitlab gitlab/gitlab --version 6.10.3 --set certmanager-issuer.email=you@toto.com
+#helm install -n development my-gitlab2 gitlab/gitlab --version 6.10.3 --set certmanager-issuer.email=akhibou1sokhona@gmail.com avec namespaces development
 
+lien helm et gitlab
+https://artifacthub.io/packages/helm/gitlab/gitlab
+
+openshift okd 
+https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/
+https://www.okd.io/
 
