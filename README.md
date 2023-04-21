@@ -183,6 +183,10 @@ type: kubernetes.io/tls
 # kubectl get pod
 NAME                           READY   STATUS      RESTARTS         AGE
 proxy                          1/1     Running     0                104m
+ 
+#kubectl get secret
+NAME                                     TYPE                 DATA   AGE
+domain-pki                               kubernetes.io/tls    2      24h
 
 ################### configmap #############################"
 #kubectl create configmap nginx-config --from-file=./nginx.conf
@@ -227,6 +231,11 @@ metadata:
   namespace: default
   resourceVersion: "83412"
   uid: 8cc62ed2-f2e7-483a-b4f0-13fbb6ee23e4
+#kubectl get cm
+NAME                                         DATA   AGE
+app-config-env                               1      19h
+nginx-config                                 1      21h
+
 
 
 
