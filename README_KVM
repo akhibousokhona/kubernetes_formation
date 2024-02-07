@@ -1,0 +1,8 @@
+[11:08] AMINE Ismail Ext DTSI/PFS
+sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system virtinst
+[11:09] AMINE Ismail Ext DTSI/PFS
+sudo usermod -aG libvirt $USER
+[11:10] AMINE Ismail Ext DTSI/PFS
+minikube config set driver kvm2
+[11:10] AMINE Ismail Ext DTSI/PFS
+minikube start
